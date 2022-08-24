@@ -15,12 +15,14 @@
             Console.WriteLine("* an even number greater than or equal to eight will be considered an arbitrary figure with the X Y coordinates of each vertex");
             input= Console.ReadLine();
             if (input != null) dataDoubles = GetParam(input);
+            ParamValidation();
         }
         
         public static void testInput(string testInput)
         {
             input = testInput;
             dataDoubles = GetParam(input);
+            ParamValidation();
         }
 
         private static List<double>? GetParam(string input)
