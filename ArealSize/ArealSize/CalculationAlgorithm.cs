@@ -42,5 +42,4 @@ public class Coordinates
         x=inX;
         y=inY;
     }
-    
 }
