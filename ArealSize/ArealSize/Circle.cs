@@ -4,7 +4,7 @@ public class Circle
 {
     private double _area = 0;
     private readonly double _radius = 0;
-    Circle(double radius)
+    public Circle(double radius)
     {
         _radius = radius;
     }

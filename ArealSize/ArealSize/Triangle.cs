@@ -2,13 +2,13 @@
 
 public class Triangle
 {
-    private readonly double _area = 0;
+    private double _area = 0;
     private double _climeA, _climeB, _climeC;
     private double semiperimeter;
     private const string MessageRightAngled = "Right angled triangle";
     private const string MessageZero = "The sides of a triangle cannot be less than zero";
     private const string MessageExist = "The triangle does not exist";
-    Triangle(double climeA, double climeB, double climeC)
+    public Triangle(double climeA, double climeB, double climeC)
     {
         this._climeA= climeA;
         this._climeB = climeB;

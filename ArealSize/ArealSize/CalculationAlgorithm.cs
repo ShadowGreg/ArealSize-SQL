@@ -7,23 +7,34 @@ class CalculationAlgorithm
     private List<Coordinates>? _coordinatesList;
     private double area = 0;
 
-    public CalculationAlgorithm(List<Coordinates>? inCoordinatesList)
+    public CalculationAlgorithm(IReadOnlyList<double>? inDoubleCoordinates)
     {
-        _coordinatesList = inCoordinatesList;
+        if (inDoubleCoordinates != null)
+        {
+            var lenght = inDoubleCoordinates.Count;
+
+            for (int i = 0; i < lenght; i = i + 2)
+            {
+                _coordinatesList?.Add(new Coordinates(inDoubleCoordinates[i], inDoubleCoordinates[i+1]));
+            }
+        }
     }
 
     public double AreaCalculation()
     {
-        var length = _coordinatesList.Count;
-        for (int i = 0; i < length; i++)
+        if (_coordinatesList != null)
         {
-            if (i != length - 1)
+            var length = _coordinatesList.Count;
+            for (int i = 0; i < length; i++)
             {
-                area = _coordinatesList[i].x * _coordinatesList[i+1].y - _coordinatesList[i+1].x * _coordinatesList[i].y;
-            }
-            else
-            {
-                area = _coordinatesList[i].x * _coordinatesList[0].y - _coordinatesList[0].x* _coordinatesList[i].y;
+                if (i != length - 1)
+                {
+                    area = _coordinatesList[i].x * _coordinatesList[i+1].y - _coordinatesList[i+1].x * _coordinatesList[i].y;
+                }
+                else
+                {
+                    area = _coordinatesList[i].x * _coordinatesList[0].y - _coordinatesList[0].x* _coordinatesList[i].y;
+                }
             }
         }
 
@@ -32,7 +43,7 @@ class CalculationAlgorithm
     }
 }
 
-public class Coordinates
+class Coordinates
 {
     public double x { get; }
     public double y { get; }
