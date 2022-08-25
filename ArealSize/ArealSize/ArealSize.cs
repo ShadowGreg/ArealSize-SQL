@@ -1,31 +1,37 @@
-﻿namespace ArealSize
+﻿using System.Globalization;
+
+namespace ArealSize
 {
-    public static class ArealSize
+    public class ArealSize
     {
-        
-        private static double _area = 0;
-        private static string? input;
-        private static List<double>? dataDoubles;
-        private static Circle ? circle;
-        public static void Area()
+
+        private double _area; 
+        private  string? input;
+        private  List<double>? dataDoubles;
+        private  Circle ? circle;
+        public void Area()
         {
             Console.WriteLine("Enter the parameters via ; as 4;6;7");
             Console.WriteLine("* one number will be considered the radius of a circle");
             Console.WriteLine("* three numbers will be considered the sides of a triangle");
             Console.WriteLine("* an even number greater than or equal to eight will be considered an arbitrary figure with the X Y coordinates of each vertex");
-            input= Console.ReadLine();
-            if (input != null) dataDoubles = GetParam(input);
-            ParamValidation();
+            input = ConsoleInput();
+            if (input != null) Input(input);
         }
-        
-        public static void testInput(string testInput)
+
+        public virtual string? ConsoleInput()
+        {
+            return Console.ReadLine();
+        }
+
+        private void Input(string? testInput)
         {
             input = testInput;
             dataDoubles = GetParam(input);
             ParamValidation();
         }
 
-        private static List<double>? GetParam(string input)
+        private List<double>? GetParam(string? input)
         {
             List<double>? tempDoubles = new List<double>();
             string[] words = input.Split(';');
@@ -36,8 +42,13 @@
 
             return tempDoubles;
         }
+        private void PrintArea(double inputArea)
+        {
+            inputArea = Math.Round(inputArea, 2);
+            Console.WriteLine(" Area is "+inputArea.ToString(CultureInfo.InvariantCulture));
+        }
 
-        private static void ParamValidation()
+        private void ParamValidation()
         {
             if (dataDoubles != null)
             {
@@ -48,16 +59,18 @@
                     {
                         Circle circle = new Circle(dataDoubles[0]);
                         _area = circle.Area();
+                        PrintArea(_area);
                     }
                     if (paramCount == 3)
                     {
-                        Triangle triangle = new Triangle(dataDoubles[0], dataDoubles[1], dataDoubles[2]);
-                        if (circle != null) _area = circle.Area();
+                        _area = new Triangle(dataDoubles[0], dataDoubles[1], dataDoubles[2]).Area();
+                        PrintArea(_area);
                     }
                     if (paramCount >= 8 && paramCount%2 == 0)
                     {
-                        CalculationAlgorithm triangle = new CalculationAlgorithm(dataDoubles);
-                        if (circle != null) _area = circle.Area();
+                        CalculationAlgorithm calculation = new CalculationAlgorithm(dataDoubles);
+                        if (circle != null) _area = calculation.AreaCalculation();
+                        PrintArea(_area);
                     }
                 }
                 else
@@ -67,4 +80,5 @@
             }
         }
     }
+   
 }
