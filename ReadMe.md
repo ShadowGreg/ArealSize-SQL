@@ -22,3 +22,5 @@ SELECT prod.name [продукт], cat.name [категория] FROM Products p
     LEFT FOIN ProdCat prodcat ON prod.id = prodcat.products_id
     INNER JOIN Category cat ON cat.id = prodcat.category_id
 ORDER BY prod.name;
+
+## The employer wrote that this is a weak solution. If you have a desire, you can offer your options.
