@@ -11,7 +11,7 @@
 
 Алгоритм решения задания по ссылке:
 
-https://drive.google.com/file/d/1CP87JBZE3P-XxAOgjJgxL3iCvqO3Ss4-/view?usp=sharing
+
 
 # Задание 2 
 В базе данных MS SQL Server есть продукты и категории. Одному продукту может соответствовать много категорий, в одной категории может быть много продуктов. Напишите SQL запрос для выбора всех пар «Имя продукта – Имя категории». Если у продукта нет категорий, то его имя все равно должно выводиться.
@@ -23,4 +23,4 @@ SELECT prod.name [продукт], cat.name [категория] FROM Products p
     INNER JOIN Category cat ON cat.id = prodcat.category_id
 ORDER BY prod.name;
 
-## The employer wrote that this is a weak solution. If you have a desire, you can offer your options.
+
