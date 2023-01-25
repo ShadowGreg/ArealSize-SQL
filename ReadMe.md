@@ -18,9 +18,22 @@
 
 _Решение задачи:_
 
-SELECT prod.name [продукт], cat.name [категория] FROM Products prod
-    LEFT FOIN ProdCat prodcat ON prod.id = prodcat.products_id
-    INNER JOIN Category cat ON cat.id = prodcat.category_id
-ORDER BY prod.name;
+````SQL
+CREATE TABLE Products(
+id INT PRIMARY KEY IDENTITY, 
+name VARCHAR(255) NOT NULL);
+
+CREATE TABLE Category(
+id INT PRIMARY KEY IDENTITY,
+name VARCHAR(255) NOT NULL);
+
+CREATE TABLE ProdCat(
+products_id INT NOT NULL,
+category_id INT NOT NULL,
+FOREIGN KEY(products_id) REFERENCES Products(id) ON DELETE CASCADE,
+FOREIGN KEY(category_id) REFERENCES Category(id) ON DELETE CASCADE);
+
+CREATE UNIQUE INDEX prod_cat ON ProdCat(products_id, category_id);
+````
 
 
