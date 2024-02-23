@@ -63,8 +63,8 @@ namespace ArealSize.Figure
         /// </summary>
         public IEnumerable<double> GetTempListSides(double deleteElement) 
         {
-            List<double> outputList = new List<double>(_sideList);
-            if (outputList.Remove(deleteElement)) 
+            List<double> outputList = new(_sideList);
+            if (!outputList.Remove(deleteElement)) 
             {
                 throw new ArgumentException("There is no such element to delete.");
             }

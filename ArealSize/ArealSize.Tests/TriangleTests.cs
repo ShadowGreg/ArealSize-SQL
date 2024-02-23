@@ -9,7 +9,7 @@ namespace ArealSize.Tests {
             const double sideA = 3;
             const double sideB = 4;
             const double sideC = 5;
-            Triangle triangle = new Triangle(sideA, sideB, sideC);
+            var triangle = new Triangle(sideA, sideB, sideC);
 
             // Act
             double area = triangle.GetArea();
@@ -33,19 +33,19 @@ namespace ArealSize.Tests {
             bool isRectangular = triangle.CheckRectangular();
 
             // Assert
-            Assert.IsTrue(isRectangular);
+            Assert.That(isRectangular, Is.True);
         }
 
         [Test]
         public void CheckRectangular_NonRightAngledTriangle_ReturnsFalse() {
             // Arrange
-            Triangle triangle = new Triangle(2, 3, 4);
+            var triangle = new Triangle(2, 3, 4);
 
             // Act
             bool isRectangular = triangle.CheckRectangular();
 
             // Assert
-            Assert.IsFalse(isRectangular);
+            Assert.That(isRectangular, Is.False);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace ArealSize.Tests {
             bool isValid = Triangle.IsValidTriangle(sideA, sideB, sideC);
 
             // Assert
-            Assert.IsTrue(isValid);
+            Assert.That(isValid, Is.True);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace ArealSize.Tests {
             bool isValid = Triangle.IsValidTriangle(sideA, sideB, sideC);
 
             // Assert
-            Assert.IsFalse(isValid);
+            Assert.That(isValid, Is.False);
         }
     }
 }
