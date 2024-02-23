@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ArealSize.Abstractions;
+﻿using ArealSize.Abstractions;
 
 namespace ArealSize.Figure 
 {
@@ -56,7 +53,7 @@ namespace ArealSize.Figure
         /// <summary>
         /// Validates if the given side lengths can form a triangle.
         /// </summary>
-        public bool IsValidTriangle(double a, double b, double c) 
+        public static bool IsValidTriangle(double a, double b, double c) 
         {
             return a + b > c && a + c > b && b + c > a;
         }
