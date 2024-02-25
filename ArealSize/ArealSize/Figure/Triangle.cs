@@ -20,7 +20,7 @@ namespace ArealSize.Figure {
         {
             if (!IsValidTriangle(firstSide, secondSide, thirdSide))
             {
-                throw new ArgumentException(
+                throw new ArgumentOutOfRangeException(
                     "Invalid triangle sides. The sum of any two sides must be greater than the third side.");
             }
 
@@ -72,7 +72,7 @@ namespace ArealSize.Figure {
             List<double> outputList = new(_sideList);
             if (!outputList.Remove(deleteElement))
             {
-                throw new ArgumentException("There is no such element to delete.");
+                throw new ArgumentOutOfRangeException("There is no such element to delete.");
             }
 
             return outputList;

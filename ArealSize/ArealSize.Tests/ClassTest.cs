@@ -13,9 +13,12 @@ public class ClassTest {
         // Act
         var triangleInterface = triangle.GetType().GetInterface("IFigure");
         var circleInterface = circle.GetType().GetInterface("IFigure");
-        
-        //Assert
-        Assert.That(triangleInterface, Is.Not.Null);
-        Assert.That(circleInterface, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+
+            //Assert
+            Assert.That(triangleInterface, Is.Not.Null);
+            Assert.That(circleInterface, Is.Not.Null);
+        });
     }
 }

@@ -4,7 +4,7 @@ namespace ArealSize.Figure {
     /// <summary>
     /// Represents a circle figure that implements the IFigure interface.
     /// </summary>
-    public class Circle: IFigure {
+    public class Circle : IFigure {
         private readonly double _radius; // Radius of the circle
 
         /// <summary>
@@ -16,7 +16,7 @@ namespace ArealSize.Figure {
             if (radius <= 0 || Double.IsNaN(radius) || Double.IsPositiveInfinity(radius) ||
                 Double.IsNegativeInfinity(radius))
             {
-                throw new ArgumentException("Radius must be more than zero");
+                throw new ArgumentOutOfRangeException("Radius must be more than zero");
             }
 
             _radius = radius;
@@ -31,7 +31,7 @@ namespace ArealSize.Figure {
             double area = Math.PI * _radius * _radius;
             if (Double.IsInfinity(area))
             {
-                throw new ArithmeticException("Area calculation resulted in overflow");
+                throw new ArgumentOutOfRangeException("Area calculation resulted in overflow");
             }
 
             return area;

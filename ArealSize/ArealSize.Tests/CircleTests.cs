@@ -1,10 +1,8 @@
 ﻿using ArealSize.Figure;
 
-namespace ArealSize.Tests
-{
+namespace ArealSize.Tests {
     [TestFixture]
-    public class CircleTests
-    {
+    public class CircleTests {
         [Test]
         public void GetArea_WithValidRadius_ReturnsCorrectArea()
         {
@@ -17,27 +15,35 @@ namespace ArealSize.Tests
 
             // Assert
             double expectedArea = Math.PI * radius * radius;
-            Assert.That(area, Is.EqualTo(expectedArea).Within(0.0001)); // Allowing a small tolerance for floating-point comparison
+            Assert.That(area,
+                Is.EqualTo(expectedArea).Within(0.0001)); // Allowing a small tolerance for floating-point comparison
         }
 
-        [Test]
-        public void Constructor_WithNegativeRadius_ThrowsArgumentException()
+        [Theory]
+        [TestCase(Double.NaN)]
+        [TestCase(Double.PositiveInfinity)]
+        [TestCase(Double.NegativeInfinity)]
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void Constructor_WithNegativeRadius_ThrowsArgumentException(double radius)
         {
-            // Arrange
-            double radius = -5;
-
-            // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Circle(radius));
+            //Arrange & Act & Assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Circle(radius));
         }
 
-        [Test]
-        public void Constructor_WithZeroRadius_ThrowsArgumentException()
+        [Theory]
+        [TestCase(1, Math.PI)]
+        [TestCase(5.5, 95.033177771091232d)]
+        public void Area_calculation_is_correct(double radius, double expectedArea)
         {
             // Arrange
-            double radius = 0;
+            var circle = new Circle(radius);
 
-            // Act & Assert
-            Assert.Throws<ArgumentException>(() => new Circle(radius));
+            // Act
+            var actualArea = circle.GetArea();
+
+            // Assert
+            Assert.That(actualArea, Is.EqualTo(expectedArea));
         }
     }
 }
